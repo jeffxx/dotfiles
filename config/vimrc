@@ -1,0 +1,65 @@
+
+
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+syntax on
+filetype indent plugin on
+set tabstop=8
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
+
+
+autocmd VimLeave * call system("tmux rename-window bash") 
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+
+
+" hi Comment ctermfg=darkgrey
+
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.vim/plugged')
+" True color scheme
+Plug 'https://github.com/lifepillar/vim-solarized8'
+Plug 'https://github.com/ayu-theme/ayu-vim'
+Plug 'https://github.com/nanotech/jellybeans.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'https://github.com/rakr/vim-one'
+" code format
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+" Initialize plugin system
+call plug#end()
+
+
+" install google codefmt
+call glaive#Install()
+Glaive codefmt clang_format_style='google'
+" enable autoformat 
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+"  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+augroup END
+
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+
+colorscheme jellybeans 
+
+"shotcut
+"
+:map <C-g> :FormatCode<Enter>
+:map <S-g> :FormatLine<Enter>

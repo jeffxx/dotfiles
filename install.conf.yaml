@@ -1,0 +1,23 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.tmux.conf: config/tmux.conf
+    ~/.vim: config/vim
+    ~/.vimrc: config/vimrc
+    ~/.gitconfig: config/gitconfig
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- shell:
+    # setup vim
+    -
+        command: setup/vim.sh
+        stdin: true
+        stdout: true
+        stderr: true
+
