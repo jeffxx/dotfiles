@@ -28,6 +28,7 @@ Plug 'https://github.com/ayu-theme/ayu-vim'
 Plug 'https://github.com/nanotech/jellybeans.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'https://github.com/rakr/vim-one'
+Plug 'https://github.com/bronson/vim-trailing-whitespace'
 " code format
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
