@@ -64,4 +64,3 @@ colorscheme jellybeans
 "shotcut
 "
 :map <C-g> :FormatCode<Enter>
-:map <S-g> :FormatLine<Enter>
